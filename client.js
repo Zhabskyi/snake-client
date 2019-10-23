@@ -12,9 +12,16 @@ const connect = function() {
   conn.setEncoding('utf8'); 
 
   conn.on('connect', () => {
-    console.log("Successfully connected to game server");
+    conn.write('Successfully connected to game server');
     conn.write('Name: OLE');
+    conn.write('Move: down');
+    setTimeout(() => conn.write('Move: left'), 500)
+    setTimeout(() => conn.write('Move: left'), 1000)
+    setInterval(() => conn.write('Move: right'), 250)
+    setInterval(() => conn.write('Move: down'), 500)
   });
+
+
 
   conn.on('data', (data) => {
     console.log('Server says: ', data);
